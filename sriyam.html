@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hulladek Sheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Light, airy palette */
+      --bg:#f6f9fb;           /* page bg */
+      --paper:#ffffff;        /* cards */
+      --ink:#182725;          /* text */
+      --muted:#5d6d6b;        /* secondary text */
+      --accent:#2fbf71;       /* primary accent */
+      --accent-2:#9be6c4;     /* soft mint */
+      --ring: rgba(47,191,113,.22);
+      --border:#e8eeec;       /* subtle border */
+      --shadow-sm: 0 8px 24px rgba(16,24,23,.06);
+      --shadow-lg: 0 22px 60px rgba(16,24,23,.10);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family:'Poppins',system-ui,Segoe UI,Arial; color:var(--ink); background:
+        radial-gradient(60vmax 40vmax at 110% -10%, rgba(47,191,113,.07), transparent 60%),
+        radial-gradient(50vmax 38vmax at -10% 120%, rgba(155,230,196,.07), transparent 60%),
+        var(--bg);
+    }
+
+    /* ===================== HERO (image as background) ===================== */
+    .hero{
+      --mx: 50%; --my: 50%; /* spotlight pointer */
+      width:min(1100px,94%); margin:26px auto 28px; position:relative; border-radius:28px; overflow:hidden; border:1px solid var(--border);
+      box-shadow: var(--shadow-lg); color:#0f1e1b;
+      background:
+        radial-gradient(600px 300px at var(--mx) var(--my), rgba(255,255,255,.55), rgba(255,255,255,.0) 60%),
+        linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.95)),
+        url('https://transcode-v2.app.engoo.com/image/fetch/f_auto,c_lfill,w_300,dpr_3/https://assets.app.engoo.com/organizations/5d2656f1-9162-461d-88c7-b2505623d8cb/images/1xQUjE7kaXf4nTFLp4cp7c.jpeg?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-inner{ padding:34px 26px 32px; backdrop-filter: blur(2px); }
+    .kicker{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; background:#f2fbf6; border:1px solid #e3f5ea; color:#236a46; font-weight:700; box-shadow: var(--shadow-sm) }
+    .hero h1{ font-size: clamp(26px, 4vw, 44px); margin:12px 0 8px; text-shadow: 0 2px 18px rgba(255,255,255,.6) }
+    .hero p{ color:#2b3a38; margin:0; font-size: clamp(14px,1.6vw,18px); max-width: 75ch; text-shadow: 0 1px 10px rgba(255,255,255,.6) }
+
+    /* ===================== SECTIONS ===================== */
+    .wrap{ width:min(1100px,94%); margin:8px auto 70px; display:grid; gap:18px }
+    .section{ background: var(--paper); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding:20px; position:relative; overflow:hidden }
+    .section:hover{ box-shadow: var(--shadow-lg) }
+    .section::before{ content:""; position:absolute; inset:auto 0 0 0; height:36%; background: linear-gradient(180deg, transparent, rgba(155,230,196,.18)); pointer-events:none }
+    .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; position:relative; z-index:2 }
+    .section h2{ font-size: clamp(18px, 2.2vw, 26px); margin:0 }
+    .section p{ margin:0; color:var(--muted) }
+
+    /* ===================== LUXE BUTTONS ===================== */
+    .buttons{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-top:16px; position:relative; z-index:2 }
+
+    .btn{
+      --glow: 0 0 0 rgba(47,191,113,0);
+      position:relative; display:flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; cursor:pointer;
+      padding:13px 16px; border-radius:16px; font-weight:800; color:#0d3829;
+      background: linear-gradient(180deg, #ffffff, #f6fffb);
+      border:1px solid #d9eee3; box-shadow: 0 10px 26px rgba(47,191,113,.15);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      /* gradient ring */
+      outline: none;
+      isolation:isolate;
+    }
+    /* gradient border using ::after mask */
+    .btn::after{
+      content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:.7; z-index:-1;
+    }
+    /* glossy sweep */
+    .btn::before{ content:""; position:absolute; inset:0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.5) 45%, transparent 60%);
+      transform: translateX(-120%); transition: transform .6s ease; }
+    .btn:hover::before{ transform: translateX(120%) }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(47,191,113,.24); filter: brightness(1.02) }
+    .btn:active{ transform: translateY(0) }
+
+    /* Icon bubble */
+    .ico{ width:28px; height:28px; border-radius:10px; display:grid; place-items:center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#083422; font-weight:900 }
+
+    /* micro badge */
+    .badge{ font-size:.72rem; padding:2px 8px; border-radius:999px; background:#e8fff4; color:#0e5137; border:1px solid #d2f1e2 }
+
+    .note{ width:min(1100px,94%); margin: 6px auto 40px; color:var(--muted); font-size:.92rem }
+
+    @media (prefers-reduced-motion: reduce){ .btn{ transition:none } }
+  </style>
+</head>
+<body>
+  <!-- HERO with background image + spotlight follow -->
+  <header class="hero" id="hero">
+    <div class="hero-inner">
+      <span class="kicker">Hulladek Recycling</span>
+      <h1>Think Waste; Think Hulladek</h1>
+      <p>An Indian waste management company founded in <B>2014</B> that specializes in the collection and recycling of <B>electronic, plastic, and battery waste</B>.</p>
+    </div>
+  </header>
+
+  <!-- Sections render target -->
+  <main id="app" class="wrap"></main>
+
+  <!-- <p class="note">টিপ: বাটনের রঙ আরও প্যাস্টেল/উজ্জ্বল করতে <code>--accent</code> ও <code>--accent-2</code> বদলান। নিজের হেডার ইমেজ বসাতে <code>.hero</code> এর <code>background</code> URL পাল্টান।</p> -->
+
+  <script>
+    /*
+      🔧 ভবিষ্যতে বাটন/সেকশন যোগ করা খুব সহজ:
+      - DATA.sections অ্যারেতে নতুন অবজেক্ট (title, subtitle, links[]) যোগ করুন।
+      - কোনো সেকশনে নতুন বাটন? links-এ { text:'...', href:'...' } পুশ করুন।
+      - Header টেক্সট/ছবি পাল্টাতে .hero এর background বা .hero-inner এর টেক্সট বদলান।
+    */
+
+    const DATA = {
+      sections: [
+        {
+          title: 'Warehouse',
+          subtitle: 'Sheets',
+          links: [
+            { text: 'Stock In Warehouse', href: 'https://docs.google.com/spreadsheets/d/1of7tZI9D_u3mxmiBfi6LyZ1A4eLJbBZSDSXMICyURD4/edit?gid=0#gid=0', icon: '🏭' },
+            { text: 'Stock Out Warehouse', href: 'https://docs.google.com/spreadsheets/d/1sygEkPMVVBIIHBilLG5jhzUeCRsUxk4VXP2G1UlTxsE/edit?gid=500343078#gid=500343078', icon: '🚚' },
+            { text: 'Stock In- Hand', href: 'https://docs.google.com/spreadsheets/d/1VNFuXVYjciNOS2XpqTECD88nn4MKoVjpbjs1yaRQik8/edit?gid=1088823847#gid=1088823847', icon: '📦' },
+            { text: 'Sales Receivable', href: 'https://docs.google.com/spreadsheets/d/1F7jeSZyzF4OU1g3A7NeB7tSeKeKOewyb0HteOA1vBWQ/edit?gid=147603120#gid=147603120', icon: '🏷️' }
+          ]
+        },
+        {
+          title: 'Operations',
+          subtitle: 'Sheets',
+          links: [
+            { text: 'Stock In Logistics', href: 'https://docs.google.com/spreadsheets/d/1lOgJEx6SLvmR6vzShJN-K2DXpdw-7obSe_5sKnmfZec/edit?gid=718861077#gid=718861077', icon: '🚛' },
+            { text: 'Master Data Sheet', href: 'https://docs.google.com/spreadsheets/d/1vTyrdCx4U5DoxCGD0i01xMzwaM9lKMkDvAZ0z-ZccuU/edit?gid=1413531090#gid=1413531090', icon: '📊' },
+            { text: 'Form VI Master', href: 'https://docs.google.com/spreadsheets/d/1q8i8V-kyHD0TbhW2XEctI7SXsrEX0ahCBJei0FKpR84/edit?gid=1874193268#gid=1874193268', icon: '🗂️' }
+          ]
+        },
+        {
+          title: 'Business Development',
+          subtitle: 'Sheets',
+          links: [
+            { text: 'BD - KOL', href: 'https://docs.google.com/spreadsheets/d/1FCYp_NrqHTRZMZ61A1FsSY7QPlsEJ-Lp5RIEijNmXpc/edit?gid=815234291#gid=815234291', icon: '🚀' },
+            { text: 'BD - JSR', href: 'https://docs.google.com/spreadsheets/d/1mvPF-S-y9YaK_A9pzM6MF7SmGIFLZDy1xtqSDavuRnM/edit?gid=815234291#gid=815234291', icon: '📈' },
+            { text: 'Spiral', href: 'https://docs.google.com/spreadsheets/d/1gxi5z0nLix4OTcXxoDK6z823ivHWV4kp6QwBhCdhfSM/edit?gid=207743757#gid=207743757', icon: '🤝' }
+          ]
+        },
+        {
+          title: 'Marketing',
+          subtitle: 'Sheets',
+          links: [
+            { text: 'Individual Feedback', href: 'https://docs.google.com/spreadsheets/d/1tIpFsX5_tHFoJgErGgvO9LocAhWm7ViYcR6NB30MC_0/edit?gid=1747625302#gid=1747625302', icon: '🙂' },
+            { text: 'Company Feedback', href: 'https://docs.google.com/spreadsheets/d/1hv26C0rYbHfwPNg4EbA6dVLGW-sVOOnFOy9jd6vbAHo/edit?gid=1747625302#gid=1747625302', icon: '🙁' }
+          ]
+        },
+        {
+          title: 'General',
+          subtitle: 'Sheets',
+          links: [
+            { text: 'Sell Trend', href: 'https://docs.google.com/spreadsheets/d/1t-VvPgMXP_1dnEtnNJBddqPt1G1ivIbtzXOHoUKSAFs/edit?gid=928850908#gid=928850908', icon: '🛒' },
+            { text: 'Payment Update', href: 'https://docs.google.com/spreadsheets/d/1bu4qhMnQcVngXfBIP8YrYR4lKumy5cQrm8WQS6JSMA0/edit?gid=0#gid=0', icon: '💶' }
+          ]
+        }
+      ]
+    };
+
+    // Create a luxe button with optional emoji icon
+    function createButton({ text, href, icon }){
+      const a = document.createElement('a');
+      a.className = 'btn'; a.href = href; a.target = '_blank'; a.rel = 'noopener';
+      if(icon){
+        const i = document.createElement('span'); i.className = 'ico'; i.textContent = icon; a.appendChild(i);
+      }
+      const t = document.createElement('span'); t.textContent = text; a.appendChild(t);
+      return a;
+    }
+
+    // Render a section card
+    function renderSection(section){
+      const card = document.createElement('section'); card.className = 'section';
+      const head = document.createElement('div'); head.className = 'section-head';
+      const h2 = document.createElement('h2'); h2.textContent = section.title;
+      const p = document.createElement('p'); p.textContent = section.subtitle || '';
+      head.append(h2,p);
+
+      const grid = document.createElement('div'); grid.className = 'buttons';
+      (section.links||[]).forEach(link => grid.appendChild(createButton(link)));
+
+      card.append(head, grid);
+      return card;
+    }
+
+    // Render all sections
+    const app = document.getElementById('app');
+    DATA.sections.forEach(sec => app.appendChild(renderSection(sec)));
+
+    // ========= Extras: Magnetic hover for buttons =========
+    document.addEventListener('mousemove', (e)=>{
+      document.querySelectorAll('.btn').forEach(btn=>{
+        const r = btn.getBoundingClientRect();
+        const cx = r.left + r.width/2; const cy = r.top + r.height/2;
+        const dx = (e.clientX - cx) / r.width; const dy = (e.clientY - cy) / r.height;
+        const dist = Math.hypot(dx,dy);
+        if(dist < 0.9){ btn.style.transform = `translate(${dx*6}px, ${dy*6}px)`; }
+      })
+    });
+    document.addEventListener('mouseleave', ()=>{
+      document.querySelectorAll('.btn').forEach(btn=> btn.style.transform='');
+    });
+
+    // ========= Hero spotlight follow =========
+    const hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', (e)=>{
+      const r = hero.getBoundingClientRect();
+      const mx = ((e.clientX - r.left) / r.width) * 100;
+      const my = ((e.clientY - r.top) / r.height) * 100;
+      hero.style.setProperty('--mx', mx+'%');
+      hero.style.setProperty('--my', my+'%');
+    });
+  </script>
+</body>
+</html>
